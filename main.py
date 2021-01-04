@@ -1,5 +1,5 @@
 import requests
-from requests.exceptions import ReadTimeout
+from requests.exceptions import ReadTimeout, HTTPError
 import os
 from dotenv import load_dotenv
 import telegram
@@ -14,11 +14,13 @@ if __name__ == '__main__':
     while True:
         try:
             response = requests.get(f'{DEVMAN_API}long_polling/', headers=header, timeout=95)
+            response.raise_for_status()
             status = response.json()['status']
             if status == 'timeout':
                 timestamp = response.json()['timestamp_to_request']
                 request_param = {'timestamp': timestamp}
                 response = requests.get(f'{DEVMAN_API}long_polling/', params=request_param,headers=header, timeout=95)
+                response.raise_for_status()
             else:
                 work_status = response.json()['new_attempts'][0]['is_negative']
                 message_text = ''
@@ -38,3 +40,5 @@ if __name__ == '__main__':
             pass
         except ConnectionError:
             pass
+        except HTTPError:
+            bot.send_message(chat_id=os.getenv("TELEGRAM_CHAT_ID"), text='Ошибка сервера!\nСервер времено не доступен!')
