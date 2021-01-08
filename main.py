@@ -23,7 +23,7 @@ if __name__ == '__main__':
                 timestamp = response_data['timestamp_to_request']
             else:
                 timestamp = response_data['last_attempt_timestamp']
-                for attempts in response_data:
+                for attempts in response_data['new_attempts']:
                     work_status = attempts['is_negative']
                     title = attempts['lesson_title']
                     url = f"https://dvmn.org{attempts['lesson_url']}"
