@@ -16,9 +16,9 @@ if __name__ == '__main__':
     bot_logger.setLevel(logging.WARNING)
     bot_logger.addHandler(BotLogsHandler())
 
-    header = {'Authorization': f'Token {os.environ("DEVMAN_TOKEN")}'}
-    bot = telegram.Bot(token=os.environ('TELEGRAM_BOT_TOKEN'))
-    chat_id = os.environ("TELEGRAM_CHAT_ID")
+    header = {'Authorization': f'Token {os.getenv("DEVMAN_TOKEN")}'}
+    bot = telegram.Bot(token=os.getenv('TELEGRAM_BOT_TOKEN'))
+    chat_id = os.getenv("TELEGRAM_CHAT_ID")
     timestamp = None
     bot_logger.info('Бот запущен!')
 
