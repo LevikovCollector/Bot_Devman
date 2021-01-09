@@ -1,7 +1,6 @@
 import requests
 from requests.exceptions import ReadTimeout, HTTPError
 import os
-from dotenv import load_dotenv
 import telegram
 import time
 import logging
@@ -10,15 +9,14 @@ from bot_logging import BotLogsHandler
 DEVMAN_API='https://dvmn.org/api/'
 
 if __name__ == '__main__':
-    load_dotenv(dotenv_path='.env')
     logging.basicConfig(format="%(levelname)s %(message)s")
     bot_logger = logging.getLogger("Бот логер")
     bot_logger.setLevel(logging.WARNING)
     bot_logger.addHandler(BotLogsHandler())
 
-    header = {'Authorization': f'Token {os.getenv("DEVMAN_TOKEN")}'}
-    bot = telegram.Bot(token=os.getenv('TELEGRAM_BOT_TOKEN'))
-    chat_id = os.getenv("TELEGRAM_CHAT_ID")
+    header = {'Authorization': f'Token {os.environ["DEVMAN_TOKEN"]}'}
+    bot = telegram.Bot(token=os.environ['TELEGRAM_BOT_TOKEN'])
+    chat_id = os.environ["TELEGRAM_CHAT_ID"]
     timestamp = None
     bot_logger.info('Бот запущен!')
 
