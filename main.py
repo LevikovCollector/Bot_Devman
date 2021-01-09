@@ -11,7 +11,7 @@ DEVMAN_API='https://dvmn.org/api/'
 if __name__ == '__main__':
     logging.basicConfig(format="%(levelname)s %(message)s")
     bot_logger = logging.getLogger("Бот логер")
-    bot_logger.setLevel(logging.WARNING)
+    bot_logger.setLevel(logging.INFO)
     bot_logger.addHandler(BotLogsHandler())
 
     header = {'Authorization': f'Token {os.environ["DEVMAN_TOKEN"]}'}
