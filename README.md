@@ -19,6 +19,7 @@ pip install -r requirements.txt
 DEVMAN_TOKEN=<токен от devman(смотри API devman)>
 TELEGRAM_BOT_TOKEN=<токен от телеграмма>
 TELEGRAM_CHAT_ID=<ваш id полученный от @userinfobot>
+TELEGRAMM_LOGGER_BOT=<токен от телеграмма> - бот который сообщает об ошибках в приложении
 ```
 
 5. Выполнить команду (в папке со скаченным скриптом)
