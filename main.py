@@ -9,8 +9,8 @@ DEVMAN_API='https://dvmn.org/api/'
 
 if __name__ == '__main__':
     load_dotenv(dotenv_path='.env')
-    header = {'Authorization': f'Token {os.getenv("DEVMAN_TOKEN")}'}
-    bot = telegram.Bot(token=os.getenv('TELEGRAM_BOT_TOKEN'))
+    header = {'Authorization': f'Token {os.environ("DEVMAN_TOKEN")}'}
+    bot = telegram.Bot(token=os.environ('TELEGRAM_BOT_TOKEN'))
     timestamp = None
     while True:
         try:
