@@ -36,7 +36,7 @@ if __name__ == '__main__':
                                        \nПреподавателю все понравилось, можно приступать к следующему уроку!
                                        \nСсылка на урок: {url}'''
 
-                    bot.send_message(chat_id=os.getenv("TELEGRAM_CHAT_ID"), text=message_text)
+                    bot.send_message(chat_id=os.environ("TELEGRAM_CHAT_ID"), text=message_text)
         except ReadTimeout:
             pass
         except ConnectionError:
