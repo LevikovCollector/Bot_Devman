@@ -4,13 +4,24 @@ import os
 import telegram
 import time
 import logging
-from bot_logging import BotLogsHandler
 
+
+bot_logger = logging.getLogger("bot_logger")
 DEVMAN_API='https://dvmn.org/api/'
+
+class BotLogsHandler(logging.Handler):
+
+    def __init__(self):
+        logging.Handler.__init__(self)
+        self.bot =  telegram.Bot(token=os.environ['TELEGRAMM_LOGGER_BOT'])
+        self.chat_id = os.environ["TELEGRAM_CHAT_ID"]
+
+    def emit(self, record):
+        log_entry = self.format(record)
+        self.bot.send_message(chat_id=self.chat_id, text=log_entry)
 
 if __name__ == '__main__':
     logging.basicConfig(format="%(levelname)s %(message)s")
-    bot_logger = logging.getLogger("Бот логер")
     bot_logger.setLevel(logging.INFO)
     bot_logger.addHandler(BotLogsHandler())
 
